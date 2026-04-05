@@ -1,16 +1,27 @@
+class ListNode:
+    def __init__(self, val=0):
+        self.val = val
+        self.next = None
 class Stack:
     def __init__(self):
-        self.data = []
+        self.head = None
+        self.size = 0
     def push(self, x: int) -> None:
-        self.data.append(x)
+        node = ListNode(x)
+        node.next = self.head
+        self.head = node
+        self.size += 1
     def pop(self) -> int:
-        return self.data.pop()
+        val = self.head.val
+        self.head = self.head.next
+        self.size -= 1
+        return val
     def peek(self) -> int:
-        return self.data[-1]
+        return self.head.val
     def empty(self) -> bool:
-        return len(self.data) == 0
-    def size(self):
-        return len(self.data)
+        return self.head is None
+    def size(self) -> int:
+        return self.size
 class MyQueue:
     def __init__(self):
         self.inbox = Stack()
